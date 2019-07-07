@@ -19,7 +19,6 @@ public class Main {
         for (int i = 0; i < 3; i++){
             consumersThreads[i].start();
         }
-        // 85 страница
     }
 
 }
