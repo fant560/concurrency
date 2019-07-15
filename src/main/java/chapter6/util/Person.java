@@ -1,8 +1,12 @@
-package chapter6.reducing_elements;
+package chapter6.util;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Person implements Comparable<Person> {
+
+    private static Comparator<Person> comparator = Comparator.comparing(Person::getLastName)
+            .thenComparing(Person::getLastName);
 
     private int id;
     private String firstName;
@@ -61,12 +65,22 @@ public class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person otherPerson){
-        int compareLastNames = this.getLastName().compareTo(otherPerson.getLastName());
-        if (compareLastNames != 0){
-            return compareLastNames;
-        } else {
-            return this.firstName.compareTo(otherPerson.firstName);
-        }
+       return comparator.compare(this, otherPerson);
     }
 
+    @Override
+    public String toString(){
+        return firstName + " " + lastName;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        return this.compareTo((Person)object) == 0;
+    }
+
+    @Override
+    public int hashCode(){
+        String sequence = this.getLastName() + this.getFirstName();
+        return sequence.hashCode();
+    }
 }

@@ -1,4 +1,4 @@
-package chapter6.reducing_elements;
+package chapter6.util;
 
 import java.util.*;
 

@@ -1,5 +1,8 @@
 package chapter6.streams_from_different_sources;
 
+import chapter6.util.Person;
+import chapter6.util.PersonGenerator;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
