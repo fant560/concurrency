@@ -5,7 +5,6 @@ import chapter6.util.PersonGenerator;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.Flow;
 
 public class Main {
 
