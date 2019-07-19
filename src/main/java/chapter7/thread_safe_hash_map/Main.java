@@ -29,7 +29,32 @@ public class Main {
         userHash.forEachEntry(10, entry -> {
             System.out.printf("%s: %s: %d\n", Thread.currentThread().getName(), entry.getKey(), entry.getValue().size());
         });
-        // 327 страница
+
+        Operation op = userHash.search(10, (user, list) -> {
+            for (Operation operation: list){
+                if (operation.getOperation().endsWith("1")){
+                    return operation;
+                }
+            }
+            return null;
+        });
+
+        System.out.printf("The operation we have found is: %s, %s, %s\n",
+                op.getUser(), op.getOperation(), op.getTime());
+
+        ConcurrentLinkedDeque<Operation> operations = userHash.search(10, (user, list) -> {
+            if (list.size() > 10){
+                return list;
+            }
+            return null;
+        });
+
+        System.out.printf("The user we have found is: %s: %d operations\n", operations.getFirst().getUser(), operations.size());
+
+        int totalSize = userHash.reduce(10, (user, list) -> list.size(),
+                Integer::sum);
+        System.out.printf("The total size is: %d\n", totalSize);
     }
+
 
 }
